@@ -16,7 +16,14 @@ const TodoEntry = ({ text = "placeholder", handleDelete, setData }) => {
 
       {isSelected && (
         <div className="delete">
-          <button onClick={() => setData(handleDelete(text))}>Delete</button>
+          <button
+            onClick={() => {
+              setData(handleDelete(text));
+              setIsSelected(false);
+            }}
+          >
+            Delete
+          </button>
         </div>
       )}
     </div>

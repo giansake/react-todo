@@ -2,6 +2,7 @@ import { useState } from "react";
 import TodoEntry from "./TodoEntry";
 
 import "./App.css";
+import Form from "./Form";
 
 const placeholderData = [
   {
@@ -24,6 +25,7 @@ function App() {
 
   return (
     <div>
+      {/* <Form /> */}
       {data.map((item, index) => {
         return (
           <TodoEntry
