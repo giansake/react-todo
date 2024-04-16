@@ -1,14 +1,14 @@
 import { useState } from "react";
 
 const Form = ({ setData }) => {
-  const [formData, setFormData] = useState();
+  const [text, setText] = useState();
 
   function handleSubmit(ev) {
     ev.preventDefault();
     setData((prev) => [
       ...prev,
       {
-        text: formData,
+        text: text,
       },
     ]);
   }
@@ -21,7 +21,7 @@ const Form = ({ setData }) => {
         className="input input__lg"
         name="text"
         autoComplete="off"
-        onChange={(ev) => setFormData(ev.target.value)}
+        onChange={(ev) => setText(ev.target.value)}
       />
       <button type="submit" className="btn btn__primary btn__lg">
         Add
