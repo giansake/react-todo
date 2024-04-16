@@ -5,6 +5,7 @@ const Form = ({ setData }) => {
 
   function handleSubmit(ev) {
     ev.preventDefault();
+
     setData((prev) => [
       ...prev,
       {
@@ -18,12 +19,11 @@ const Form = ({ setData }) => {
       <input
         type="text"
         name="text"
-        autoComplete="off"
+        autoComplete="true"
+        required={true}
         onChange={(ev) => setText(ev.target.value)}
       />
-      <button type="submit" className="btn btn__primary btn__lg">
-        Add
-      </button>
+      <button type="submit">Add</button>
     </form>
   );
 };
