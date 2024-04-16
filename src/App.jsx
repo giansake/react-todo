@@ -25,9 +25,7 @@ function App() {
 
   return (
     <div>
-      {/* <Form /> */}
-
-      <button onClick={() => setData(placeholderData)}>Restore</button>
+      <Form setData={setData} />
       {data.map((item, index) => {
         return (
           <TodoEntry
@@ -38,6 +36,7 @@ function App() {
           />
         );
       })}
+      <button onClick={() => setData(placeholderData)}>Restore</button>
     </div>
   );
 }
