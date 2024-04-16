@@ -6,12 +6,19 @@ const Form = ({ setData }) => {
   function handleSubmit(ev) {
     ev.preventDefault();
 
-    setData((prev) => [
-      ...prev,
-      {
-        text: text,
-      },
-    ]);
+    setData((prev) => {
+      const existAlready = prev.findIndex((el) => el.text === text);
+      if (existAlready > -1) {
+        return prev;
+      } else {
+        return [
+          ...prev,
+          {
+            text: text,
+          },
+        ];
+      }
+    });
   }
 
   return (
