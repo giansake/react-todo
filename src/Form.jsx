@@ -17,8 +17,6 @@ const Form = ({ setData }) => {
     <form onSubmit={(ev) => handleSubmit(ev)}>
       <input
         type="text"
-        id="new-todo-input"
-        className="input input__lg"
         name="text"
         autoComplete="off"
         onChange={(ev) => setText(ev.target.value)}
