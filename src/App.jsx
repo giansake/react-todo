@@ -3,7 +3,6 @@ import TodoEntry from "./TodoEntry";
 
 import "./App.css";
 import Form from "./Form";
-import Test from "./Test";
 
 const placeholderData = [
   {
@@ -26,7 +25,6 @@ function App() {
 
   return (
     <div>
-      <Test />
       <Form setData={setData} />
       {data.map((item, index) => {
         return (
