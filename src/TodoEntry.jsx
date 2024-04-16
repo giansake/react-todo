@@ -7,16 +7,16 @@ const TodoEntry = ({ text = "placeholder", handleDelete, setData }) => {
   return (
     <div className="todo-row-container">
       <LayoutGroup>
-        <motion.div layout className="todo-entry">
+        <motion.div layout="size" className="todo-entry">
           <input
             type="checkbox"
             checked={isSelected}
             onChange={() => setIsSelected(!isSelected)}
           />
-          <span>{text}</span>
+          <motion.span layout>{text}</motion.span>
         </motion.div>
 
-        <AnimatePresence>
+        <AnimatePresence initial={false} mode="popLayout">
           {isSelected && (
             <motion.div
               layout
