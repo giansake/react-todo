@@ -9,6 +9,7 @@ const Form = ({ setData }) => {
     setData((prev) => {
       const existAlready = prev.findIndex((el) => el.text === text);
       if (existAlready > -1) {
+        alert("Task already there! DO IT");
         return prev;
       } else {
         return [
