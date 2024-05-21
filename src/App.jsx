@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
 import TodoEntry from "./TodoEntry";
+import Form from "./Form";
 
 import "./App.css";
-import Form from "./Form";
 
 const placeholderData = [
   {
@@ -17,26 +18,62 @@ const placeholderData = [
 ];
 
 function App() {
-  const [data, setData] = useState(placeholderData);
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setError(null);
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch(`http://localhost:1337/api/tasks`, {
+          method: "GET",
+        });
+        if (!response.ok) {
+          throw new Error(`Qualcosa è andato storto: ${response.status}`);
+        }
+        let responseData = await response.json();
+        setData(
+          responseData.data.map((el) => {
+            return {
+              id: el.id,
+              ...el.attributes,
+            };
+          })
+        );
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  console.log(data);
 
   function handleDelete(text) {
-    return data.filter((el) => el.text !== text);
+    return data.filter((el) => el.label !== text);
   }
 
   return (
     <div>
       <Form setData={setData} />
-      {data.map((item, index) => {
-        return (
-          <TodoEntry
-            key={index}
-            text={item.text}
-            handleDelete={handleDelete}
-            setData={setData}
-          />
-        );
-      })}
-      <button onClick={() => setData(placeholderData)}>Restore</button>
+      {!isLoading &&
+        data.map((item, index) => {
+          return (
+            <TodoEntry
+              key={index}
+              text={item.label}
+              handleDelete={handleDelete}
+              setData={setData}
+            />
+          );
+        })}
+
+      {/* 
+      <button onClick={() => setData(placeholderData)}>Restore</button> */}
     </div>
   );
 }
